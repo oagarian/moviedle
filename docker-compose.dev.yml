@@ -1,0 +1,13 @@
+version: "3"
+services:
+  database:
+    container_name: moviedle_database
+    build:
+      context: .
+      dockerfile: .docker/development/Dockerfile.postgres
+    environment:
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
+    ports:
+      - "5432:5432"
