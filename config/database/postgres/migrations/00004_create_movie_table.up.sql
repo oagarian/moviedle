@@ -7,3 +7,8 @@ CREATE TABLE IF NOT EXISTS "movie" (
     slogan text NOT NULL,
     resume text NOT NULL
 );
+
+COPY movie(id, title, year, slogan, resume) 
+    FROM 'fixtures/00004/movie.csv'
+    DELIMITER ';'
+    CSV HEADER;
