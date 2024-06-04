@@ -3,13 +3,15 @@ package repository
 import (
 	"database/sql"
 	"fmt"
-	"os"
 	"moviedle/src/core/domain/errors"
+	"moviedle/src/utils/functions"
+	"os"
 	"regexp"
 	"strings"
 	"time"
-	_ "github.com/lib/pq"
+
 	"github.com/jmoiron/sqlx"
+	_ "github.com/lib/pq"
 )
 
 var keyConstraintCompiler = regexp.MustCompile(`^.+?_(.*)_key`)
@@ -25,16 +27,8 @@ type SQLTransaction struct {
 	Commit    func() errors.Error
 }
 
-func getEnvValueWithDefault(key, defaultValue string) string{
-	value := os.Getenv(key)
-    if value == "" {
-        return defaultValue
-    }
-    return value
-}
-
 func getDatabaseSchema() string {
-	return getEnvValueWithDefault("DATABASE_SCHEMA", "postgres")
+	return functions.GetEnvValueWithDefault("DATABASE_SCHEMA", "postgres")
 }
 
 func getDatabaseURI() string {
@@ -46,7 +40,7 @@ func getDatabaseURI() string {
 	name := os.Getenv("DATABASE_NAME")
 	authentication := fmt.Sprintf("%s:%s", user, pwd)
 	dst := fmt.Sprintf("%s:%s/%s", host, port, name)
-	sslMode := getEnvValueWithDefault("DATABASE_SSL_MODE", "disable")
+	sslMode := functions.GetEnvValueWithDefault("DATABASE_SSL_MODE", "disable")
 	return fmt.Sprintf("%s://%s@%s?sslmode=%s", schema, authentication, dst, sslMode)
 }
 

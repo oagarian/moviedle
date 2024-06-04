@@ -9,6 +9,6 @@ CREATE TABLE IF NOT EXISTS "movie" (
 );
 
 COPY movie(id, title, year, slogan, resume) 
-    FROM 'fixtures/00004/movie.csv'
+    FROM '/fixtures/00004/movie.csv'
     DELIMITER ';'
     CSV HEADER;

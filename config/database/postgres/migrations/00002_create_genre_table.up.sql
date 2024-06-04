@@ -9,6 +9,6 @@ CREATE TABLE IF NOT EXISTS "genre" (
 );
 
 COPY genre(id, name, code) 
-    FROM 'fixtures/00001/genre.csv'
+    FROM '/fixtures/00002/genre.csv'
     DELIMITER ';'
     CSV HEADER;

@@ -3,8 +3,7 @@ package genre
 import (
 	"moviedle/src/core/domain/errors"
 	"moviedle/src/core/messages"
-	validator "moviedle/src/utils"
-
+	"moviedle/src/utils/validator"
 	"github.com/google/uuid"
 )
 
