@@ -49,11 +49,9 @@ func newGenreFromMapRows(data map[string]interface{}) (genre.Genre, errors.Error
 	name := fmt.Sprint(data["name"])
 	code := fmt.Sprint(data["code"])
 
-	_genreBuilder := genre.NewBuilder()
-	_genreBuilder.
-	    WithID(id).
-		WithCode(code).
-		WithName(name)
-
-	return _genreBuilder.Build()
+	return genre.NewBuilder().
+			WithID(id).
+			WithCode(code).
+			WithName(name).
+			Build()
 }
