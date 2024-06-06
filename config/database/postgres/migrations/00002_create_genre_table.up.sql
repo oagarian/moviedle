@@ -7,3 +7,8 @@ CREATE TABLE IF NOT EXISTS "genre" (
     code VARCHAR(12) NOT NULL,
         CONSTRAINT uk_film_gen_code UNIQUE (name)
 );
+
+COPY genre(id, name, code) 
+    FROM '/fixtures/00002/genre.csv'
+    DELIMITER ';'
+    CSV HEADER;
