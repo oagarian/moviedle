@@ -5,3 +5,8 @@ CREATE TABLE IF NOT EXISTS "director" (
     name varchar(255) NOT NULL,
         CONSTRAINT uk_dir_name UNIQUE (name)
 );
+
+COPY director(id, name) 
+    FROM '/fixtures/00005/director.csv'
+    DELIMITER ';'
+    CSV HEADER;
