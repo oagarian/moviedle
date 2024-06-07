@@ -7,3 +7,8 @@ CREATE TABLE IF NOT EXISTS "oscar_category" (
     code VARCHAR(12) NOT NULL,
         CONSTRAINT uk_osc_gen_code UNIQUE (name)
 );
+
+COPY oscar_category(id, name, code)
+    FROM '/fixtures/00003/oscar_category.csv'
+    DELIMITER ';' 
+    CSV HEADER;
