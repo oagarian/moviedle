@@ -7,3 +7,8 @@ CREATE TABLE IF NOT EXISTS "movie_oscar" (
     movie_id uuid NOT NULL,
         CONSTRAINT fk_mov_osc_movie_id FOREIGN KEY (movie_id) REFERENCES movie(id)
 );
+
+COPY movie_oscar(id, oscar_id, movie_id) 
+    FROM '/fixtures/00007/movie_oscar.csv'
+    DELIMITER ';' 
+    CSV HEADER;
