@@ -14,6 +14,7 @@ const (
 	MovieResume 	= "Resume of a movie"
 	MovieOscars 	= "Oscars of a movie"
 
+	MovieNotFoundErrorMessage           = "Movie not found"
 	MovieInvalidIDErrorMessage      	= "The provided ID is invalid"
 	MovieIDCannotBeEmptyMessage     	= "The movie ID cannot be empty"
 	MovieTitleCannotBeEmptyMessage  	= "The movie title cannot be empty"
