@@ -38,7 +38,7 @@ func (*movieTests) testWithValidParameters(t *testing.T) {
 	directors := []director.Director{_director}
 	oscars := []oscar.Oscar{_oscar}
 
-	movie.SetID(id)
+	movie.SetID(&id)
 	movie.SetTitle("Title")
 	movie.SetCoverURL("https://example.com/cover.jpg")
 	movie.SetGenres(genres)
@@ -63,12 +63,12 @@ func (*movieTests) testWithValidParameters(t *testing.T) {
 func (*movieTests) testIDSetters(t *testing.T) {
 	id := uuid.New()
 	movie := movie{}
-	err := movie.SetID(id)
+	err := movie.SetID(&id)
 	assert.Nil(t, err)
 	assert.NotNil(t, movie)
 
 	invalidID := uuid.Nil
-	err = movie.SetID(invalidID)
+	err = movie.SetID(&invalidID)
 	assert.NotNil(t, err)
 	assert.Equal(t, errors.NewValidationFromString(messages.MovieInvalidIDErrorMessage), err)
 }
