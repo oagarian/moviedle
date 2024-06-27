@@ -12,26 +12,26 @@ import (
 )
 
 type movie struct {
-	id 	   *uuid.UUID
-	title  string
-	coverURL string
-	genres []genre.Genre
-	directors []director.Director
-	year   uint16
-	slogan string
-	resume string
-	oscars []oscar.Oscar
+	id 	        *uuid.UUID
+	title       string
+	coverURL    string
+	genres      []genre.Genre
+	directors   []director.Director
+	year        uint16
+	slogan      string
+	resume      string
+	oscars      []oscar.Oscar
 }
 
 func (m *movie) ID() *uuid.UUID {
     return m.id
 }
 
-func (m *movie) SetID(id uuid.UUID) errors.Error {
-	if !validator.IsUUIDValid(id) {
+func (m *movie) SetID(id *uuid.UUID) errors.Error {
+	if !validator.IsUUIDValid(*id) {
         return errors.NewValidationFromString(messages.MovieInvalidIDErrorMessage)
     }
-    m.id = &id
+    m.id = id
     return nil
 }
 
