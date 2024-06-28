@@ -7,15 +7,15 @@ import (
 )
 
 type Movie struct {
-	id 	        *uuid.UUID `json:"id"`
-	title       string `json:"title"`
-	coverURL    string `json:"cover_url"`
-	genres      []Genre `json:"genres"`
-	directors   []Director `json:"directors"`
-	year        uint16 `json:"year"`
-	slogan      string `json:"slogan"`
-	resume      string `json:"resume"`
-	oscars      []Oscar `json:"oscars"`
+	ID 	        *uuid.UUID `json:"id"`
+	Title       string `json:"title"`
+	CoverURL    string `json:"cover_url"`
+	Genres      []Genre `json:"genres"`
+	Directors   []Director `json:"directors"`
+	Year        uint16 `json:"year"`
+	Slogan      string `json:"slogan"`
+	Resume      string `json:"resume"`
+	Oscars      []Oscar `json:"oscars,omitempty"`
 }
 
 type movieBuilder struct{}

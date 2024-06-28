@@ -7,9 +7,9 @@ import (
 )
 
 type Oscar struct {
-	id *uuid.UUID `json:"id"`
-	name string `json:"name"`
-	code string `json:"code"`
+	ID 	 *uuid.UUID `json:"id"`
+	Name string `json:"name"`
+	Code string `json:"code"`
 }
 
 type oscarBuilder struct{}

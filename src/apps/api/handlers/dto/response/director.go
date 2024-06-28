@@ -7,8 +7,8 @@ import (
 )
 
 type Director struct {
-	id *uuid.UUID `json:"id"`
-	name string `json:"name"`
+	ID 	 *uuid.UUID `json:"id"`
+	Name string `json:"name"`
 }
 
 type directorBuilder struct{}

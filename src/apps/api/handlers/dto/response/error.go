@@ -30,7 +30,7 @@ var badRequestError = &echo.HTTPError{
 }
 var internalServerError = &echo.HTTPError{
 	Code:    http.StatusInternalServerError,
-	Message: "Ocorreu um erro inesperado. Por favor, contate o suporte.",
+	Message: "Internal server error",
 }
 var forbiddenError = &echo.HTTPError{
 	Code: http.StatusForbidden,

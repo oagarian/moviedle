@@ -92,6 +92,7 @@ func Queryx(sqlQuery string, args ...interface{}) (*sqlx.Rows, errors.Error) {
 	defer closeConnection(conn)
 	rows, queryErr := conn.Queryx(sqlQuery, args...)
 	if queryErr != nil {
+		fmt.Println(queryErr)
 		return nil, TranslateError(queryErr)
 	}
 	return rows, nil

@@ -20,6 +20,7 @@ func NewMovieRepository() secondary.MoviePort {
 }
 
 func (g *movieRepository) Get(movieID *uuid.UUID) (movie.Movie, errors.Error) {
+	fmt.Println(movieID)
 	rows, err := repository.Queryx(query.NewMovieQuery().Get(), movieID.String())
 	if err != nil {
 		return nil, errors.NewUnexpected()

@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"moviedle/src/apps/api/routes"
 
+	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/pkgerrors"
@@ -59,4 +61,11 @@ func (a *api) start() {
 	if err := a.server.Start(address); err != nil {
 		a.server.Logger.Fatal(err)
 	}
+}
+
+func init() {
+    err := godotenv.Load()
+    if err != nil {
+        log.Fatal("Cannot load environment variables.")
+    }
 }

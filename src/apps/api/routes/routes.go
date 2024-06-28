@@ -3,6 +3,7 @@ package routes
 import (
 	"github.com/labstack/echo/v4"
 	"github.com/swaggo/echo-swagger"
+	_ "moviedle/src/apps/api/docs"
 )
 
 type Router interface {
@@ -17,6 +18,7 @@ func New() Router {
 }
 
 func (r *router) Load(rootEndpoint *echo.Group) {
+	r.LoadDocs(rootEndpoint)
 	NewMovieRouter().Load(rootEndpoint)
 }
 
