@@ -5,9 +5,12 @@ import (
 	"moviedle/src/apps/api/routes"
 
 	"github.com/labstack/echo/v4"
+	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/pkgerrors"
 )
 
 func main() {
+	zerolog.ErrorStackMarshaler = pkgerrors.MarshalStack
 	api := NewAPI("0.0.0.0", 8080)
 	api.Serve()
 }
@@ -26,6 +29,13 @@ func (a *api) Serve() {
 	a.start()
 }
 
+// @title Moviedle
+// @version 1.0
+// @description Moviedle project
+// @BasePath /api
+// @securityDefinitions.apikey BearerAuth
+// @in header
+// @name Authorization
 func NewAPI(host string, port int) API {
 	server := echo.New()
 	return &api{host, port, server}

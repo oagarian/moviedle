@@ -1,0 +1,71 @@
+basePath: /api
+definitions:
+  response.ErrorMessage:
+    properties:
+      invalid_fields:
+        items:
+          $ref: '#/definitions/response.InvalidField'
+        type: array
+      message:
+        type: string
+      status_code:
+        type: integer
+    type: object
+  response.InvalidField:
+    properties:
+      description:
+        type: string
+      field_name:
+        type: string
+    type: object
+  response.Movie:
+    type: object
+info:
+  contact: {}
+  description: Moviedle project
+  title: Moviedle
+  version: "1.0"
+paths:
+  /movies/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Allow a user to see details of a movie.
+      operationId: Movies.Get
+      parameters:
+      - default: a92adbf5-930c-41ce-bff3-b11798505f1c
+        description: Movie ID.
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success.
+          schema:
+            $ref: '#/definitions/response.Movie'
+        "400":
+          description: Bad Request.
+          schema:
+            $ref: '#/definitions/response.ErrorMessage'
+        "500":
+          description: Internal error.
+          schema:
+            $ref: '#/definitions/response.ErrorMessage'
+        "503":
+          description: Database out of function.
+          schema:
+            $ref: '#/definitions/response.ErrorMessage'
+      security:
+      - bearerAuth: []
+      summary: View movie details.
+      tags:
+      - Movie
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
