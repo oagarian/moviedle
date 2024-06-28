@@ -74,6 +74,17 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "response.Director": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
         "response.ErrorMessage": {
             "type": "object",
             "properties": {
@@ -91,6 +102,20 @@ const docTemplate = `{
                 }
             }
         },
+        "response.Genre": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
         "response.InvalidField": {
             "type": "object",
             "properties": {
@@ -103,7 +128,59 @@ const docTemplate = `{
             }
         },
         "response.Movie": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "cover_url": {
+                    "type": "string"
+                },
+                "directors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/response.Director"
+                    }
+                },
+                "genres": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/response.Genre"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "oscars": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/response.Oscar"
+                    }
+                },
+                "resume": {
+                    "type": "string"
+                },
+                "slogan": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "year": {
+                    "type": "integer"
+                }
+            }
+        },
+        "response.Oscar": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
         }
     },
     "securityDefinitions": {
@@ -125,7 +202,8 @@ var SwaggerInfo = &swag.Spec{
 	Description:      "Moviedle project",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
-
+	LeftDelim:        "{{",
+	RightDelim:       "}}",
 }
 
 func init() {

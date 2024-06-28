@@ -1,5 +1,12 @@
 basePath: /api
 definitions:
+  response.Director:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+    type: object
   response.ErrorMessage:
     properties:
       invalid_fields:
@@ -11,6 +18,15 @@ definitions:
       status_code:
         type: integer
     type: object
+  response.Genre:
+    properties:
+      code:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+    type: object
   response.InvalidField:
     properties:
       description:
@@ -19,6 +35,40 @@ definitions:
         type: string
     type: object
   response.Movie:
+    properties:
+      cover_url:
+        type: string
+      directors:
+        items:
+          $ref: '#/definitions/response.Director'
+        type: array
+      genres:
+        items:
+          $ref: '#/definitions/response.Genre'
+        type: array
+      id:
+        type: string
+      oscars:
+        items:
+          $ref: '#/definitions/response.Oscar'
+        type: array
+      resume:
+        type: string
+      slogan:
+        type: string
+      title:
+        type: string
+      year:
+        type: integer
+    type: object
+  response.Oscar:
+    properties:
+      code:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
     type: object
 info:
   contact: {}
