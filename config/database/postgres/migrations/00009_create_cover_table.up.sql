@@ -6,3 +6,8 @@ CREATE TABLE IF NOT EXISTS "cover" (
     movie_id uuid NOT NULL,
         CONSTRAINT fk_mov_cv_movie_id FOREIGN KEY (movie_id) REFERENCES movie(id)
 );
+
+COPY cover(id, cover_url, movie_id) 
+    FROM '/fixtures/00009/cover.csv'
+    DELIMITER ';'
+    CSV HEADER;
