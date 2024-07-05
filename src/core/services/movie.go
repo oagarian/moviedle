@@ -22,3 +22,7 @@ func NewMovieService(repository secondary.MoviePort) primary.MoviePort {
 func (s *movieService) Get(_ID *uuid.UUID) (movie.Movie, errors.Error) {
     return s.repository.Get(_ID)
 }
+
+func (s *movieService) All() ([]movie.Movie, errors.Error) {
+    return s.repository.All()
+}
