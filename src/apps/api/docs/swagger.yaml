@@ -76,6 +76,36 @@ info:
   title: Moviedle
   version: "1.0"
 paths:
+  /movies:
+    get:
+      consumes:
+      - application/json
+      description: Allow a user list all movies in database.
+      operationId: Movies.All
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success.
+          schema:
+            $ref: '#/definitions/response.Movie'
+        "400":
+          description: Bad Request.
+          schema:
+            $ref: '#/definitions/response.ErrorMessage'
+        "500":
+          description: Internal error.
+          schema:
+            $ref: '#/definitions/response.ErrorMessage'
+        "503":
+          description: Database out of function.
+          schema:
+            $ref: '#/definitions/response.ErrorMessage'
+      security:
+      - bearerAuth: []
+      summary: List all movies.
+      tags:
+      - Movie
   /movies/{id}:
     get:
       consumes:
