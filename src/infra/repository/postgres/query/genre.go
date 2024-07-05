@@ -11,7 +11,7 @@ func NewGenreQuery() GenreQuery {
     return &genreQuery{}
 }
 
-func (g *genreQuery) ListByMovieID() string {
+func (*genreQuery) ListByMovieID() string {
     return `
 		SELECT 
 			g.id AS id,

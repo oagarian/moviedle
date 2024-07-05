@@ -11,7 +11,7 @@ func NewDirectorQuery() DirectorQuery {
     return &directorQuery{}
 }
 
-func (g *directorQuery) ListByMovieID() string {
+func (*directorQuery) ListByMovieID() string {
     return `
 		SELECT 
 			d.id AS id,

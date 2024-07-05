@@ -40,3 +40,11 @@ func (*movieBuilder) BuildFromDomain(data movie.Movie) Movie {
         NewOscarBuilder().BuildFromDomainList(oscarData),
     }
 }
+
+func (*movieBuilder) BuildFromDomainList(data []movie.Movie) []Movie {
+	var movies []Movie
+    for _, movieData := range data {
+        movies = append(movies, NewMovieBuilder().BuildFromDomain(movieData))
+    }
+    return movies
+}
