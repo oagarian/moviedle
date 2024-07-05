@@ -19,4 +19,5 @@ func NewMovieRouter() Router {
 func (r *movieRouter) Load(rootEndpoint *echo.Group) {
 	router := rootEndpoint.Group("/movies")
 	router.GET("/:id", r.handler.Get)
+	router.GET("", r.handler.All)
 }

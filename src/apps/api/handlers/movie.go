@@ -13,6 +13,7 @@ import (
 
 type MovieHander interface {
 	Get(echo.Context) error
+	All(echo.Context) error
 }
 
 type movieHandler struct {
@@ -47,4 +48,26 @@ func (h *movieHandler) Get(ctx echo.Context) error {
 	} else {
 		return ctx.JSON(http.StatusOK, response.NewMovieBuilder().BuildFromDomain(result))
 	}
+}
+
+
+// All
+// @ID Movies.All
+// @Summary List all movies.
+// @Description Allow a user list all movies in database.
+// @Security bearerAuth
+// @Accept json
+// @Tags Movie
+// @Produce json
+// @Success 200 {object} response.Movie "Success."
+// @Failure 400 {object} response.ErrorMessage "Bad Request."
+// @Failure 500 {object} response.ErrorMessage "Internal error."
+// @Failure 503 {object} response.ErrorMessage "Database out of function."
+// @Router /movies [get]
+func (h *movieHandler) All(ctx echo.Context) error {
+	if result, err := h.service.All(); err!= nil {
+        return response.ErrorBuilder().NewFromDomain(ctx, err)
+    } else {
+        return ctx.JSON(http.StatusOK, response.NewMovieBuilder().BuildFromDomainList(result))
+    }
 }
