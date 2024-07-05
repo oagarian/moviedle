@@ -14,8 +14,8 @@ func NewDirectorQuery() DirectorQuery {
 func (g *directorQuery) ListByMovieID() string {
     return `
 		SELECT 
-			g.id AS id,
-			g.name AS name
+			d.id AS id,
+			d.name AS name
 		FROM movie_director md
 		INNER JOIN director d
 			ON d.id = md.director_id

@@ -2,17 +2,17 @@ package query
 
 import ()
 
-type movieQuery struct {}
+type movieQuery struct{}
 type MovieQuery interface {
 	Get() string
 }
 
 func NewMovieQuery() MovieQuery {
-    return &movieQuery{}
+	return &movieQuery{}
 }
 
 func (g *movieQuery) Get() string {
-    return `
+	return `
 		SELECT
 			m.id AS id,
 			m.title AS title,
