@@ -19,7 +19,7 @@ func NewMovieRepository() secondary.MoviePort {
 	return &movieRepository{}
 }
 
-func (g *movieRepository) Get(movieID *uuid.UUID) (movie.Movie, errors.Error) {
+func (*movieRepository) Get(movieID *uuid.UUID) (movie.Movie, errors.Error) {
 	rows, err := repository.Queryx(query.NewMovieQuery().Get(), movieID.String())
 	if err != nil {
 		return nil, errors.NewUnexpected()
@@ -37,6 +37,29 @@ func (g *movieRepository) Get(movieID *uuid.UUID) (movie.Movie, errors.Error) {
         return nil, errors.NewUnexpected()
     }
 	return newMovieFromMapRows(serializedMovie)
+}
+
+func (*movieRepository) All() ([]movie.Movie, errors.Error) {
+	rows, err := repository.Queryx(query.NewMovieQuery().All())
+    if err!= nil {
+        return nil, errors.NewUnexpected()
+    }
+    defer rows.Close()
+
+    var movies []movie.Movie
+    for rows.Next() {
+        var serializedMovie = map[string]interface{}{}
+        nativeErr := rows.MapScan(serializedMovie)
+        if nativeErr    != nil {
+            return nil, errors.NewUnexpected()
+        }
+        movie, err := newMovieFromMapRows(serializedMovie)
+        if err!= nil {
+            return nil, errors.NewUnexpected()
+        }
+        movies = append(movies, movie)
+    }
+    return movies, nil
 }
 
 func newMovieFromMapRows(data map[string]interface{}) (movie.Movie, errors.Error) {
