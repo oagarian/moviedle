@@ -11,7 +11,7 @@ func NewOscarQuery() OscarQuery {
     return &oscarQuery{}
 }
 
-func (g *oscarQuery) ListByMovieID() string {
+func (*oscarQuery) ListByMovieID() string {
     return `
 		SELECT 
 			o.id AS id,
